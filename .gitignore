@@ -7,3 +7,6 @@
 
 # Package Files
 *.jar
+
+# Maven
+target/
