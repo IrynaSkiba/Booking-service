@@ -4,11 +4,9 @@ import itechart.bookingservice.model.User;
 import itechart.bookingservice.repository.UserRepository;
 import itechart.bookingservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthenticationController {
@@ -19,12 +17,12 @@ public class AuthenticationController {
 
     @GetMapping("/login")
     public String login() {
-        return "/login";    //Here need Oauth2 link
+        return "/login";
     }
 
-    @PostMapping("/registration")
-    public String addUser(@ModelAttribute User user, Model model) {
-        if(userRepository.findByEmail(user.getEmail()) != null) return "registration";
+    @PostMapping(value = "/registration")
+    public String addUser(@RequestBody User user, Model model) {
+        if (userRepository.findByEmail(user.getEmail()) != null) return "registration";
         userService.saveUser(user);
         return "redirect:/login";
     }

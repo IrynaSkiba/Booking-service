@@ -17,9 +17,9 @@ public class User {
     @Column
     private String email;
     @Column
-    private char[] password;
+    private String password;
     @Column
-    @DateTimeFormat(pattern = "dd.mm.yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     @Column(name = "is_admin")
     private boolean isAdmin;
@@ -50,11 +50,11 @@ public class User {
         this.email = email;
     }
 
-    public char[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(char[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

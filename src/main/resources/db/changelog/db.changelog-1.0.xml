@@ -169,4 +169,9 @@
                                  referencedTableName="events"
                                  referencedColumnNames="id_event"/>
     </changeSet>
+    <!--changeSet id="1.0.19" author="Skiba Iryna">
+        <modifyDataType columnName="password"
+                        newDataType="varchar(255)"
+                        tableName="users"/>
+    </changeSet-->
 </databaseChangeLog>
