@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,7 +18,7 @@ public class Category {
     @Column(name = "name_category")
     private String name;
 
-/*    @OneToMany(mappedBy = "category_id")
-    private Set<Event> events;*/
+    @OneToMany(mappedBy = "categoryId")
+    private Set<Event> events;
 
 }
