@@ -6,12 +6,12 @@
     <changeSet id="1.1.0" author="Skiba Iryna">
         <createTable tableName="users">
 
-            <column name="id_user" type="INT" autoIncrement="true">
+            <column name="user_id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" unique="true"/>
             </column>
             <column name="name" type="VARCHAR(50)"/>
             <column name="email" type="VARCHAR(255)"/>
-            <column name="password" type="BINARY(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
             <column name="birthday" type="DATETIME"/>
             <column name="is_admin" type="TINYINT(1)"/>
             <column name="city" type="VARCHAR(50)"/>
@@ -19,11 +19,9 @@
     </changeSet>
     <changeSet id="1.0.1" author="Skiba Iryna">
         <createTable tableName="events">
-            <column name="id_event" type="INT">
+            <column name="event_id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" unique="true"/>
             </column>
-            <column name="id_place" type="INT"/>
-            <column name="id_category" type="INT"/>
             <column name="data_time" type="DATETIME"/>
             <column name="age_limit" type="INT"/>
             <column name="image" type="VARCHAR(2000)"/>
@@ -31,7 +29,7 @@
     </changeSet>
     <changeSet id="1.0.2" author="Skiba Iryna">
         <createTable tableName="places">
-            <column name="id_place" type="INT">
+            <column name="place_id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" unique="true"/>
             </column>
             <column name="name_place" type="VARCHAR(255)"/>
@@ -40,7 +38,7 @@
     </changeSet>
     <changeSet id="1.0.3" author="Skiba Iryna">
         <createTable tableName="categories">
-            <column name="id_category" type="INT">
+            <column name="category_id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" unique="true"/>
             </column>
             <column name="name_category" type="VARCHAR(50)"/>
@@ -48,130 +46,28 @@
     </changeSet>
     <changeSet id="1.0.4" author="Skiba Iryna">
         <createTable tableName="likes">
-            <column name="id_event" type="INT">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="id_user" type="INT">
-                <constraints primaryKey="true"/>
+            <column name="like_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" unique="true"/>
             </column>
             <column name="is_like" type="TINYINT(1)"/>
         </createTable>
     </changeSet>
     <changeSet id="1.0.5" author="Skiba Iryna">
         <createTable tableName="comments">
-            <column name="id_user" type="INT">
-                <constraints primaryKey="true"/>
+            <column name="comment_id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" unique="true"/>
             </column>
-            <column name="id_event" type="INT">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="data_time" type="DATETIME">
-                <constraints primaryKey="true"/>
-            </column>
+            <column name="data_time" type="DATETIME"/>
             <column name="text" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
     <changeSet id="1.0.6" author="Skiba Iryna">
         <createTable tableName="tickets">
-            <column name="id_ticket" type="INT">
+            <column name="ticket_id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" unique="true"/>
             </column>
-            <column name="id_event" type="INT"/>
-            <column name="id_user" type="INT"/>
             <column name="price" type="DECIMAL"/>
         </createTable>
     </changeSet>
-    <changeSet id="1.0.7" author="Skiba Iryna">
-        <renameColumn tableName="tickets"
-                      oldColumnName="id_event"
-                      newColumnName="event"
-                      columnDataType="INT"/>
-    </changeSet>
-    <changeSet id="1.0.8" author="Skiba Iryna">
-        <addForeignKeyConstraint baseTableName="tickets"
-                                 baseColumnNames="event"
-                                 constraintName="fk_id_event"
-                                 referencedTableName="events"
-                                 referencedColumnNames="id_event"/>
-    </changeSet>
-    <changeSet id="1.0.9" author="Skiba Iryna">
-        <renameColumn tableName="tickets"
-                      oldColumnName="id_user"
-                      newColumnName="user"
-                      columnDataType="INT"/>
-    </changeSet>
-    <changeSet id="1.0.10" author="Skiba Iryna">
-        <addForeignKeyConstraint baseTableName="tickets"
-                                 baseColumnNames="user"
-                                 constraintName="fk_id_user"
-                                 referencedTableName="users"
-                                 referencedColumnNames="id_user"/>
-    </changeSet>
-    <changeSet id="1.0.11" author="Skiba Iryna">
-        <renameColumn tableName="events"
-                      oldColumnName="id_place"
-                      newColumnName="place"
-                      columnDataType="INT"/>
-    </changeSet>
-    <changeSet id="1.0.12" author="Skiba Iryna">
-        <addForeignKeyConstraint baseTableName="events"
-                                 baseColumnNames="place"
-                                 constraintName="fk_id_place"
-                                 referencedTableName="places"
-                                 referencedColumnNames="id_place"/>
-    </changeSet>
-    <changeSet id="1.0.13" author="Skiba Iryna">
-        <renameColumn tableName="events"
-                      oldColumnName="id_category"
-                      newColumnName="category"
-                      columnDataType="INT"/>
-    </changeSet>
-    <changeSet id="1.0.14" author="Skiba Iryna">
-        <addForeignKeyConstraint baseTableName="events"
-                                 baseColumnNames="category"
-                                 constraintName="fk_id_category"
-                                 referencedTableName="categories"
-                                 referencedColumnNames="id_category"/>
-    </changeSet>
-    <changeSet id="1.0.15" author="Skiba Iryna">
-        <addForeignKeyConstraint baseTableName="likes"
-                                 baseColumnNames="id_event"
-                                 constraintName="fk_event"
-                                 referencedTableName="events"
-                                 referencedColumnNames="id_event"/>
-    </changeSet>
-    <changeSet id="1.0.16" author="Skiba Iryna">
-        <addForeignKeyConstraint baseTableName="likes"
-                                 baseColumnNames="id_user"
-                                 constraintName="fk_user_id"
-                                 referencedTableName="users"
-                                 referencedColumnNames="id_user"/>
-    </changeSet>
-    <changeSet id="1.0.17" author="Skiba Iryna">
-        <renameColumn tableName="comments"
-                      oldColumnName="id_user"
-                      newColumnName="user"
-                      columnDataType="INT"/>
-        <addForeignKeyConstraint baseTableName="comments"
-                                 baseColumnNames="user"
-                                 constraintName="fk_user_com"
-                                 referencedTableName="users"
-                                 referencedColumnNames="id_user"/>
-    </changeSet>
-    <changeSet id="1.0.18" author="Skiba Iryna">
-        <renameColumn tableName="comments"
-                      oldColumnName="id_event"
-                      newColumnName="event"
-                      columnDataType="INT"/>
-        <addForeignKeyConstraint baseTableName="comments"
-                                 baseColumnNames="event"
-                                 constraintName="fk_event_id"
-                                 referencedTableName="events"
-                                 referencedColumnNames="id_event"/>
-    </changeSet>
-    <!--changeSet id="1.0.19" author="Skiba Iryna">
-        <modifyDataType columnName="password"
-                        newDataType="varchar(255)"
-                        tableName="users"/>
-    </changeSet-->
+
 </databaseChangeLog>

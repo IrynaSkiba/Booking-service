@@ -20,10 +20,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.
-                anonymous().disable()
+        http.csrf().disable()
+                //.anonymous().disable()
                 .authorizeRequests()
-                .antMatchers("/users/**").authenticated()
+                .antMatchers("/registration").permitAll()
+                // .antMatchers(HttpMethod.POST, "/events").hasAuthority("ROLE_ADMIN")
+                .anyRequest().authenticated()
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 }

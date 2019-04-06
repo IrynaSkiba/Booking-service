@@ -1,10 +1,9 @@
 package itechart.bookingservice.repository;
 
-import itechart.bookingservice.model.User;
+import itechart.bookingservice.model.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends  JpaRepository<User, Integer> {
-   User findByEmail(String email);
+public interface EventRepository extends JpaRepository<Event, Integer> {
 }

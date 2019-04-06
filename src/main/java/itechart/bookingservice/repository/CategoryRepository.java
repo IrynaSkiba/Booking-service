@@ -1,10 +1,9 @@
 package itechart.bookingservice.repository;
 
-import itechart.bookingservice.model.User;
+import itechart.bookingservice.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends  JpaRepository<User, Integer> {
-   User findByEmail(String email);
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }
