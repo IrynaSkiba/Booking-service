@@ -70,4 +70,9 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="1.0.7" author="Skiba Iryna">
+        <addColumn tableName="events">
+            <column name="name" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

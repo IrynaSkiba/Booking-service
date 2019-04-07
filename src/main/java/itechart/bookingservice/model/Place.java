@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -19,7 +20,7 @@ public class Place {
     @Column
     private String address;
 
-/*    @OneToMany(mappedBy = "places")
-    private Set<Event> events;*/
+    @OneToMany(mappedBy = "placeId")
+    private Set<Event> events;
 
 }

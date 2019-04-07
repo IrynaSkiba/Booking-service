@@ -14,10 +14,9 @@ public class Like {
     @Column(name = "like_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    /*    @Column(name = "id_user")
-        private Integer user;
-        @Column(name = "id_event")
-        private Integer event;*/
     @Column(name = "is_like")
     private Boolean isLike;
+
+    private int userId;
+    private int eventId;
 }

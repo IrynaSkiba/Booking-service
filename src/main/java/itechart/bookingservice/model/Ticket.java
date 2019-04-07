@@ -18,10 +18,6 @@ public class Ticket {
     @Column
     private BigDecimal price;
 
-/*    @ManyToOne
-    @JoinColumn(name="userId")
-    private User user;*/
-
     private int eventId;
-
+    private int userId;
 }

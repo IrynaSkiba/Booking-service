@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -30,7 +31,10 @@ public class User {
     @Column
     private String city;
 
-/*    @OneToMany(mappedBy = "users")
-    private Set<Ticket> tickets;*/
-
+    @OneToMany(mappedBy = "userId")
+    private Set<Comment> comments;
+    @OneToMany(mappedBy = "userId")
+    private Set<Like> likes;
+    @OneToMany(mappedBy = "userId")
+    private Set<Ticket> tickets;
 }

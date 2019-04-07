@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -15,12 +16,11 @@ public class Comment {
     @Column(name = "comment_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    /*    @Column
-        private Integer user;
-        @Column
-        private Integer event;*/
     @Column(name = "data_time")
     private Date dataTime;
     @Column
     private String text;
+
+    private int eventId;
+    private int userId;
 }

@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,13 +17,6 @@ public class Event {
     @Column(name = "event_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
-/*    @ManyToOne
-    @JoinColumn(name="id_place")
-    private Place place;*/
-
-    private int categoryId;
-
     @Column(name = "age_limit")
     private Integer ageLimit;
     @Column(name = "data_time")
@@ -30,8 +24,17 @@ public class Event {
     private Date dateTime;
     @Column
     private String image;
+    @Column
+    private String name;
 
-  /*  @OneToMany(mappedBy = "eventId")
-    private Set<Ticket> tickets;*/
+    private int categoryId;
+    private int placeId;
+
+    @OneToMany(mappedBy = "eventId")
+    private Set<Comment> comments;
+    @OneToMany(mappedBy = "eventId")
+    private Set<Like> likes;
+    @OneToMany(mappedBy = "eventId")
+    private Set<Ticket> tickets;
 
 }

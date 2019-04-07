@@ -21,6 +21,6 @@ public class AuthenticationController {
     public String addUser(@RequestBody User user) {
         if (userRepository.findByEmail(user.getEmail()) != null) return "registration";
         userService.saveUser(user);
-        return "redirect:"; //
+        return "redirect:";
     }
 }
