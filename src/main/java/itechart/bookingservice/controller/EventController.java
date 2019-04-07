@@ -3,10 +3,9 @@ package itechart.bookingservice.controller;
 import itechart.bookingservice.model.Event;
 import itechart.bookingservice.repository.EventRepository;
 import itechart.bookingservice.service.impl.EventServiceImpl;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EventController {
@@ -18,19 +17,8 @@ public class EventController {
         this.eventRepository = eventRepository;
     }
 
-    @PostMapping("events")
-    @PreAuthorize("hasRole('ADMIN')")
-    public void createEvent(@RequestBody Event event) {
-        eventService.crateEvent(event);
-    }
-
     @GetMapping("events/{id}")
     public Event getEvent(@PathVariable("id") Event event) {
         return event;
-    }
-
-    @GetMapping("events")
-    public List<Event> getEvents() {
-        return eventRepository.findAll();
     }
 }

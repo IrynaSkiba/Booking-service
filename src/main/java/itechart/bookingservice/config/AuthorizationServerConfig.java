@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-    private static final String CLIEN_ID = "devglan-client";
+    private static final String CLIENT_ID = "devglan-client";
     private static final String CLIENT_SECRET = "$2a$04$e/c1/RfsWuThaWFCrcCuJeoyvwCV0URN/6Pn9ZFlrtIWaU/vj/BfG";
     private static final String GRANT_TYPE = "password";
     private static final String AUTHORIZATION_CODE = "authorization_code";
@@ -23,10 +23,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 60 * 60;
     private static final int REFRESH_TOKEN_VALIDITY_SECONDS = 6 * 60 * 60;
 
-    //  @Autowired
     private TokenStore tokenStore;
-
-    //  @Autowired
     private AuthenticationManager authenticationManager;
 
     public AuthorizationServerConfig(TokenStore tokenStore, AuthenticationManager authenticationManager) {
@@ -39,7 +36,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         configurer
                 .inMemory()
-                .withClient(CLIEN_ID)
+                .withClient(CLIENT_ID)
                 .secret(CLIENT_SECRET)
                 .authorizedGrantTypes(GRANT_TYPE, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT)
                 .scopes(SCOPE_READ, SCOPE_WRITE, TRUST)

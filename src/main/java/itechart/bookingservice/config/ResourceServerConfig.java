@@ -11,7 +11,6 @@ import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHand
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-
     private static final String RESOURCE_ID = "resource_id";
 
     @Override
@@ -22,7 +21,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                //.anonymous().disable()
                 .authorizeRequests()
                 .antMatchers("/registration").permitAll()
                 .antMatchers(HttpMethod.POST, "/events").hasRole("ADMIN")
