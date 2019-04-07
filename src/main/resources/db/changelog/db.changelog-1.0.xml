@@ -22,6 +22,7 @@
             <column name="event_id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" unique="true"/>
             </column>
+            <column name="name" type="VARCHAR(255)"/>
             <column name="data_time" type="DATETIME"/>
             <column name="age_limit" type="INT"/>
             <column name="image" type="VARCHAR(2000)"/>
@@ -68,11 +69,5 @@
             </column>
             <column name="price" type="DECIMAL"/>
         </createTable>
-    </changeSet>
-
-    <changeSet id="1.0.7" author="Skiba Iryna">
-        <addColumn tableName="events">
-            <column name="name" type="VARCHAR(255)"/>
-        </addColumn>
     </changeSet>
 </databaseChangeLog>
