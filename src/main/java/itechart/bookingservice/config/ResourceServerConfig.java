@@ -25,7 +25,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/registration").permitAll()
                 .antMatchers(HttpMethod.POST, "/events").hasRole("ADMIN")
                 .antMatchers( "/users").hasRole("ADMIN")
-               // .antMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }

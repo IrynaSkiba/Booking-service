@@ -70,4 +70,9 @@
             <column name="price" type="DECIMAL"/>
         </createTable>
     </changeSet>
+    <changeSet id="1.0.7" author="Skiba Iryna">
+        <addColumn tableName="places">
+            <column name="count_tickets" type="INT"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
