@@ -3,9 +3,10 @@ package itechart.bookingservice.controller;
 import itechart.bookingservice.model.User;
 import itechart.bookingservice.repository.UserRepository;
 import itechart.bookingservice.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -23,7 +24,16 @@ public class UserController {
     }
 
     @GetMapping("users")
-    public String getUsers() {
-        return "users";
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
+
+    @PostMapping("users")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String createAdmin(@RequestBody User user){
+        if (userRepository.findByEmail(user.getEmail()) != null)  return "redirect: users";
+        userService.saveAdmin(user);
+        return "redirect:";
     }
 }

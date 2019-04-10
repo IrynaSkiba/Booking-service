@@ -26,4 +26,17 @@ public class UserServiceImpl implements UserService {
         user.setCity(userDto.getCity());
         userRepository.save(user);
     }
+
+    @Override
+    public void saveAdmin(User user) {
+        User admin = new User();
+        admin.setPassword(passwordEncoder.encode(user.getPassword()));
+        admin.setEmail(user.getEmail());
+        admin.setName(user.getName());
+        admin.setAdmin(true);
+        admin.setBirthday(user.getBirthday());
+        admin.setCity(user.getCity());
+        userRepository.save(admin);
+    }
+
 }
