@@ -14,12 +14,14 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void crateEvent(Event eventDto) {
+    public void createEvent(Event eventDto) {
         Event event = new Event();
         event.setDateTime(eventDto.getDateTime());
         event.setAgeLimit(eventDto.getAgeLimit());
         event.setImage(eventDto.getImage());
         event.setName(eventDto.getName());
+        event.setPlaceId(eventDto.getPlaceId());
+        event.setCategoryId(eventDto.getCategoryId());
         eventRepository.save(event);
     }
 }

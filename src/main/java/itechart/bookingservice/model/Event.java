@@ -30,11 +30,11 @@ public class Event {
     private int categoryId;
     private int placeId;
 
-    @OneToMany(mappedBy = "eventId")
+    @OneToMany(mappedBy = "eventId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Comment> comments;
-    @OneToMany(mappedBy = "eventId")
+    @OneToMany(mappedBy = "eventId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Like> likes;
-    @OneToMany(mappedBy = "eventId")
+    @OneToMany(mappedBy = "eventId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
 
 }
