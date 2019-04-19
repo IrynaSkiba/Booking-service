@@ -1,5 +1,6 @@
 package itechart.bookingservice.model;
 
+import itechart.bookingservice.dto.EventDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,7 +35,19 @@ public class Event {
     private Set<Comment> comments;
     @OneToMany(mappedBy = "eventId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Like> likes;
-    @OneToMany(mappedBy = "eventId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "eventId",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
 
+    public Event(EventDto event) {
+        this.setDateTime(event.getDateTime());
+        this.setAgeLimit(event.getAgeLimit());
+        this.setImage(event.getImage());
+        this.setName(event.getName());
+        this.setPlaceId(event.getPlaceId());
+        this.setCategoryId(event.getCategoryId());
+    }
+
+    public Event(){
+
+    }
 }

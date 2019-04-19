@@ -35,6 +35,6 @@ public class User {
     private Set<Comment> comments;
     @OneToMany(mappedBy = "userId")
     private Set<Like> likes;
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
 }

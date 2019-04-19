@@ -1,5 +1,7 @@
 package itechart.bookingservice.controller;
 
+import itechart.bookingservice.dto.EventDto;
+import itechart.bookingservice.dto.TicketDto;
 import itechart.bookingservice.model.Event;
 import itechart.bookingservice.repository.EventRepository;
 import itechart.bookingservice.service.impl.EventServiceImpl;
@@ -26,8 +28,9 @@ public class EventController {
 
     @PostMapping("events")
     @PreAuthorize("hasRole('ADMIN')")
-    public Event createEvent(@RequestBody Event event) {
-        eventService.createEvent(event);
-        return event;
+    public List<Event> createEvent(@RequestBody EventDto eventDto) {
+        eventService.createEvent(eventDto);
+
+        return eventService.getEvents();
     }
 }

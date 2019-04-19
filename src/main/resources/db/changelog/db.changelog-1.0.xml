@@ -5,7 +5,6 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
     <changeSet id="1.1.0" author="Skiba Iryna">
         <createTable tableName="users">
-
             <column name="user_id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true" unique="true"/>
             </column>
@@ -74,5 +73,8 @@
         <addColumn tableName="places">
             <column name="count_tickets" type="INT"/>
         </addColumn>
+    </changeSet>
+    <changeSet id="1.0.8" author="Skiba Iryna">
+        <dropUniqueConstraint tableName="users" constraintName="user_id"/>
     </changeSet>
 </databaseChangeLog>

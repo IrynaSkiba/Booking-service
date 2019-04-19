@@ -20,4 +20,11 @@ public class Ticket {
 
     private int eventId;
     private int userId;
+
+    public Ticket(int eventId, BigDecimal price){
+        this.setPrice(price);
+        this.setEventId(eventId);
+    }
+
+    public Ticket(){}
 }

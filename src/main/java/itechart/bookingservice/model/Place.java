@@ -19,6 +19,8 @@ public class Place {
     private String name;
     @Column
     private String address;
+    @Column(name="count_tickets")
+    private int countTickets;
 
     @OneToMany(mappedBy = "placeId")
     private Set<Event> events;
