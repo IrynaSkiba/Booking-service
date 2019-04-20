@@ -24,14 +24,19 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Ticket> getTickets(int id) {
+    public List<Ticket> getTicketsByEventId(int id) {
         return ticketRepository.getTicketsByEventId(id);
     }
 
     @Override
-    public Ticket buyTicket(Ticket ticket, int userId) {
+    public void buyTicket(Ticket ticket, int userId) {
         ticket.setUserId(userId);
         ticketRepository.save(ticket);
-        return ticket;
+        return;
+    }
+
+    @Override
+    public List<Ticket> getTicketsByUserId(int id) {
+        return ticketRepository.getTicketsByUserId(id);
     }
 }

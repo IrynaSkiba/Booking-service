@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket,Integer> {
     List<Ticket> getTicketsByEventId(int id);
+    List<Ticket> getTicketsByUserId(int id);
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TicketService {
     void saveTickets(ArrayList<Ticket> tickets);
-    List<Ticket> getTickets(int id);
-
-    Ticket buyTicket(Ticket ticket, int userId);
+    List<Ticket> getTicketsByEventId(int id);
+    List<Ticket> getTicketsByUserId(int id);
+    void buyTicket(Ticket ticket, int userId);
 }

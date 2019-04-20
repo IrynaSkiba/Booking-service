@@ -3,13 +3,11 @@ package itechart.bookingservice.controller;
 import itechart.bookingservice.dto.EventDto;
 import itechart.bookingservice.model.Event;
 import itechart.bookingservice.model.Ticket;
-import itechart.bookingservice.model.User;
 import itechart.bookingservice.service.impl.EventServiceImpl;
 import itechart.bookingservice.service.impl.TicketServiceImpl;
 import itechart.bookingservice.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -43,7 +41,7 @@ public class EventController {
 
     @GetMapping("events/{id}/tickets")
     public List<Ticket> getTickets(@PathVariable("id") Event event) {
-        return ticketService.getTickets(event.getId());
+        return ticketService.getTicketsByEventId(event.getId());
     }
 
     @GetMapping("events/{id}/tickets/{idTicket}")

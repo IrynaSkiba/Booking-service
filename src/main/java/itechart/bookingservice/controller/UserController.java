@@ -1,7 +1,6 @@
 package itechart.bookingservice.controller;
 
 import itechart.bookingservice.model.User;
-import itechart.bookingservice.repository.UserRepository;
 import itechart.bookingservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,8 +26,8 @@ public class UserController {
 
     @PostMapping("users")
     @PreAuthorize("hasRole('ADMIN')")
-    public String createAdmin(@RequestBody User user){
-        if (userService.findByEmail(user.getEmail()) != null)  return "redirect: users";
+    public String createAdmin(@RequestBody User user) {
+        if (userService.findByEmail(user.getEmail()) != null) return "redirect: users";
         userService.saveAdmin(user);
         return "redirect:";
     }
