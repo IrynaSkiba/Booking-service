@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -20,5 +21,17 @@ public class TicketServiceImpl implements TicketService {
 
     public void saveTicket(Ticket ticket) {
         ticketRepository.save(ticket);
+    }
+
+    @Override
+    public List<Ticket> getTickets(int id) {
+        return ticketRepository.getTicketsByEventId(id);
+    }
+
+    @Override
+    public Ticket buyTicket(Ticket ticket, int userId) {
+        ticket.setUserId(userId);
+        ticketRepository.save(ticket);
+        return ticket;
     }
 }
