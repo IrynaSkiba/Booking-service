@@ -1,5 +1,7 @@
 package itechart.bookingservice.service.impl;
 
+import itechart.bookingservice.model.Comment;
+import itechart.bookingservice.model.Like;
 import itechart.bookingservice.model.User;
 import itechart.bookingservice.repository.UserRepository;
 import itechart.bookingservice.service.UserService;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -52,5 +55,17 @@ public class UserServiceImpl implements UserService {
 
     public int getIdOfCurrentUser(Principal currentUser){
         return findByEmail(currentUser.getName()).getId();
+    }
+
+    @Override
+    public Set<Like> getLikes(Principal currentUser) {
+        User user = userRepository.findById(getIdOfCurrentUser(currentUser));
+        return user.getLikes();
+    }
+
+    @Override
+    public Set<Comment> getComments(Principal currentUser) {
+        User user = userRepository.findById(getIdOfCurrentUser(currentUser));
+        return user.getComments();
     }
 }
