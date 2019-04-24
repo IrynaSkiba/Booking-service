@@ -35,7 +35,7 @@ public class Event {
     private Set<Comment> comments;
     @OneToMany(mappedBy = "eventId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Like> likes;
-    @OneToMany(mappedBy = "eventId",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "eventId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
 
     public Event(EventDto event) {

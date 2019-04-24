@@ -8,4 +8,6 @@ import java.util.List;
 public interface EventService {
     Event createEvent(EventDto event);
     List<Event> getEvents();
+    List<Event> getEventsByCategories(int id);
+    List<Event> getEventsByPlaces(int id);
 }

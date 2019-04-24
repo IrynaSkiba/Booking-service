@@ -3,7 +3,9 @@ package itechart.bookingservice.controller;
 import itechart.bookingservice.dto.CommentDto;
 import itechart.bookingservice.dto.EventDto;
 import itechart.bookingservice.dto.LikeDto;
+import itechart.bookingservice.model.Category;
 import itechart.bookingservice.model.Event;
+import itechart.bookingservice.model.Place;
 import itechart.bookingservice.model.Ticket;
 import itechart.bookingservice.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +64,15 @@ public class EventController {
     @PutMapping("events/{id}/comments")
     public void addComment(@RequestBody CommentDto commentDto, @PathVariable("id") Event event, Principal currentUser) {
         commentService.addComment(commentDto.getText(), userService.getIdOfCurrentUser(currentUser), event.getId());
+    }
+
+    @GetMapping("events/categories/{id}")
+    public List<Event> getEventsByCategories(@PathVariable("id") Category category){
+        return eventService.getEventsByCategories(category.getId());
+    }
+
+    @GetMapping("events/places/{id}")
+    public List<Event> getEventsByPlaces(@PathVariable("id") Place place){
+        return eventService.getEventsByPlaces(place.getId());
     }
 }
