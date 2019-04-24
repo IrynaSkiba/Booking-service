@@ -2,6 +2,7 @@ package itechart.bookingservice.service;
 
 import itechart.bookingservice.model.User;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface UserService {
@@ -11,4 +12,5 @@ public interface UserService {
     List<User> getUsers();
 
     User findByEmail(String email);
+    int getIdOfCurrentUser(Principal currentUser);
 }

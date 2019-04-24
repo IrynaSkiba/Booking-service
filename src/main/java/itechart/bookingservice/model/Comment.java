@@ -23,4 +23,12 @@ public class Comment {
 
     private int eventId;
     private int userId;
+
+    public Comment(String text, int userId, int eventId, Date date){
+        this.setText(text);
+        this.setUserId(userId);
+        this.setEventId(eventId);
+        this.setDataTime(date);
+    }
+    public Comment(){}
 }

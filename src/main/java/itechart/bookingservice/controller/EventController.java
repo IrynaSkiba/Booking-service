@@ -1,11 +1,11 @@
 package itechart.bookingservice.controller;
 
+import itechart.bookingservice.dto.CommentDto;
 import itechart.bookingservice.dto.EventDto;
+import itechart.bookingservice.dto.LikeDto;
 import itechart.bookingservice.model.Event;
 import itechart.bookingservice.model.Ticket;
-import itechart.bookingservice.service.impl.EventServiceImpl;
-import itechart.bookingservice.service.impl.TicketServiceImpl;
-import itechart.bookingservice.service.impl.UserServiceImpl;
+import itechart.bookingservice.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +21,10 @@ public class EventController {
     private TicketServiceImpl ticketService;
     @Autowired
     private UserServiceImpl userService;
+    @Autowired
+    private LikeServiceImpl likeService;
+    @Autowired
+    private CommentServiceImpl commentService;
 
     @GetMapping("events/{id}")
     public Event getEvent(@PathVariable("id") Event event) {
@@ -46,7 +50,17 @@ public class EventController {
 
     @GetMapping("events/{id}/tickets/{idTicket}")
     public Ticket buyTicket(@PathVariable("idTicket") Ticket ticket, Principal currentUser) {
-        ticketService.buyTicket(ticket, userService.findByEmail(currentUser.getName()).getId());
+        ticketService.buyTicket(ticket, userService.getIdOfCurrentUser(currentUser));
         return ticket;
+    }
+
+    @PutMapping("events/{id}/likes")
+    public void setLike(@RequestBody LikeDto likeDto, @PathVariable("id") Event event, Principal currentUser) {
+        likeService.setLike(likeDto.getIsLike(), userService.getIdOfCurrentUser(currentUser), event.getId());
+    }
+
+    @PutMapping("events/{id}/comments")
+    public void addComment(@RequestBody CommentDto commentDto, @PathVariable("id") Event event, Principal currentUser) {
+        commentService.addComment(commentDto.getText(), userService.getIdOfCurrentUser(currentUser), event.getId());
     }
 }

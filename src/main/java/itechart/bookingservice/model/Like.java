@@ -15,8 +15,16 @@ public class Like {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "is_like")
-    private Boolean isLike;
+    private boolean isLike;
 
     private int userId;
     private int eventId;
+
+    public Like(boolean isLike, int userId, int eventId){
+        this.setLike(isLike);
+        this.setUserId(userId);
+        this.setEventId(eventId);
+    }
+    public Like(){
+    }
 }

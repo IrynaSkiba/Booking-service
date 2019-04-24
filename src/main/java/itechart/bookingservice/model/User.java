@@ -31,9 +31,9 @@ public class User {
     @Column
     private String city;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Comment> comments;
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Like> likes;
     @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Ticket> tickets;
